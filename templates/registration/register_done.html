@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="container" style="width: 30%;">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+        <h1>Welcome {{ new_user.first_name }}</h1>
+    </div>
+
+        <p>We've emailed you instructions to verify/activate your account</p>
+        <p>If you do not receive the email, follow this <a href="{% url 'request-new-link-from-email' %}">link</a> to request new email</p>
+
+
+</div>
+</div>
+{% endblock %}

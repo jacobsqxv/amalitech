@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container" style="width: 30%;">
+  <div class="layout__body" style="margin-top: 2rem;">
+    <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+      <h1>Activation Failed</h1>
+    </div>
+  <p>The activation link is invalid or has expired. </p>
+  <p>Follow this <a href="{% url 'request-new-link-from-email' %}">link</a> to request new email</p>
+  <p>Please contact the administrator for further assistance.</p>
+</div>
+</div>
+{% endblock %}

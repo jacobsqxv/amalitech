@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block title %}Logout{% endblock %}
+{% block content %}
+<div class="container" style="width: 30%;">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+        <h1>Logout</h1>
+    </div>
+    <p>
+         You've been logged out, <a href="{% url 'login' %}">log in</a> again 
+    </p>
+    </div>
+</div>
+{% endblock %}
