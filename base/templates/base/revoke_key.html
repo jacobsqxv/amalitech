@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block title %}Revoke Access Key{% endblock %}
+
+{% block content %}
+<div class="container" style="width: 30%;">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+            <h1>Revoke Key</h1>
+        </div>
+    {% if s_message %}
+    <p>{{ s_message }}</p>
+    {% endif %}
+    
+    <div class="form__group" style="padding: 1rem;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to revoke the access key "{{access_key.access_key}}"</p>
+            <div class="confirm" style="width: 50%;">
+                <p><input type="submit" value="Revoke"></p>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

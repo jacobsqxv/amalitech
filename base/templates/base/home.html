@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="container" style="width: 30%">
+        <div class="layout__body" style="margin-top: 2rem;">
+            <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+            <h1>Home</h1>
+        </div>
+        {% if user.is_staff %}
+        <div style="padding-top: 1.2rem;">
+            <p>Welcome to Micro-Focus Inc. platform</p>
+        </div>
+        <div style="padding-top: 1.2rem;">
+            <p>Generate key <a href="{% url 'access_key_form' %}">here</a></p>
+        </div>
+        <div style="padding-top: 1.2rem;">
+            <p>Check endpoint <a href="{% url 'endpoint' %}">here</a></p>
+        </div>
+        {% else %}
+        <div style="padding-top: 1.2rem;">
+            <p>Welcome to Micro-Focus Inc. platform</p>
+        </div>
+        <div style="padding-top: 1.2rem;">
+            <p>Purchase key <a href="{% url 'access_key_form' %}">here</a></p>
+        </div>
+        {% endif %}
+    
+        <div style="padding-top: 1.2rem;">
+            <p>See <a href="{% url 'access_keys' %}">list</a> of access keys granted</p>
+        </div>
+        <div style="padding-top: 1.2rem;">
+            <p>Change your password <a href="{% url 'password_change' %}">here</a></p>
+        </div>
+    </div>  
+    
+{% endblock %}

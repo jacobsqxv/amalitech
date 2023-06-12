@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block title %}Access Keys{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+        <h1>Access Keys</h1>
+    </div>
+    <div style="padding-top: 1rem;">
+    <p>Total access keys granted: {{ access_keys.count }}</p>
+
+
+    {% if access_keys.count > 0 %}
+    <p>Active keys granted: {{ active_keys }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Key</th>
+                <th>Status</th>
+                <th>Procurement Date</th>
+                <th>Expiry Date</th>
+                {% if request.user.is_staff %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for access_key in access_keys %}
+            <tr>
+                <td>{{ access_key.user }}</td>
+                <td>{{ access_key.access_key }}</td>
+                <td>{{ access_key.status | capfirst }}</td>
+                <td>{{ access_key.procurement_date }}</td>
+                <td>{{ access_key.expiry_date }}</td>
+                {% if request.user.is_staff and access_key.status != 'revoked' %}
+                <td>
+                    <a href="{% url 'revoke_access_key' access_key.id %}">Revoke</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    </div>
+</div>
+</div>
+{% endblock %}

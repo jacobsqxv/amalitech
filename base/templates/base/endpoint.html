@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+
+{% block title %}Endpoint Response{% endblock %}
+
+{% block content %}
+<div class="container" style="width: 30%">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+        <h1>Endpoint</h1>
+    </div>
+
+    <div class="form__group"">
+        <label for="email">School Email:</label>
+        <input type="text" id="email" name="email" style="width: 50%;">
+        <div class="confirm" style="width: 30%;">
+            <p><input type="submit" id="submit-btn" value="Submit"></p>
+        </div>
+    </div>
+    
+    <div id="result"></div>
+    <div id="key"></div>
+    <div id="status"></div>
+    <div id="procurement-date"></div>
+    <div id="expiry-date"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submit-btn').click(function() {
+                var email = $('#email').val();
+
+                // Make AJAX request to the endpoint
+                $.ajax({
+                    url: '/api/check-school-email/',
+                    method: 'GET',
+                    data: {
+                        email: email
+                    },
+                    success: function(response) {
+                        // Handle successful response
+                        // Parse the JSON response
+                        var key = response.key;
+                        var status = response.status;
+                        var procurementDate = response.procurement_date;
+                        var expiryDate = response.expiry_date;
+
+                        // Display the key details on the page
+                        $('#result').text('');
+                        $('#key').text('Key: ' + key);
+                        $('#status').text('Status: ' + status);
+                        $('#procurement-date').text('Procurement Date: ' + procurementDate);
+                        $('#expiry-date').text('Expiry Date: ' + expiryDate);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        if (xhr.status === 404) {
+                            // Show a message indicating no active key found
+                            $('#result').text('No active key found for the provided email.');
+                        } else {
+                            // Show a general error message
+                            $('#result').text('An error occurred while retrieving the key details.');
+                        }
+                        // Clear the key details
+                        $('#key').text('');
+                        $('#status').text('');
+                        $('#procurement-date').text('');
+                        $('#expiry-date').text('');
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+{% endblock %}

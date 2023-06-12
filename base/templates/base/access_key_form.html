@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block title %}Generate Access Key{% endblock %}
+
+{% block content %}
+<div class="container" style="width: 20%;">
+    <div class="layout__body" style="margin-top: 2rem;">
+        <div class="header__title" style="margin-left: -1rem; padding-top: 2rem;">
+            <h1>Generate Access Key</h1>
+        </div>
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {% endif %}
+            <div class="form__group" style="width: 50%">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name == 'user'%}
+                            {% if request.user.is_staff %}
+                                <label for="{{ field.id_for_label}}">{{field.label}}:</label>
+                                {{field}}
+                            {% else %}
+                                <label for="{{ field.id_for_label}}">{{field.label}}</label>
+                                <select name="{{field.html_name}}" id="{{field.auto_id}}">
+                                    <option value="{{request.user.pk}}" selected>{{request.user.username}}</option>
+                                </select>
+                            {% endif %}
+                        {% else %}
+                        <label for="status">Status:</label>
+                        <select name="status" id="status">
+                            <option value="active" selected>Active</option>
+                        </select>
+                        <br>
+                        <br>
+                        {% endif %}
+                        
+                    {% endfor %}
+                    <div style="margin-top: 2.5rem;">
+                        <p><input type="submit" value="Generate"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+</div>
+{% endblock %}
