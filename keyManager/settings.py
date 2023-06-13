@@ -167,11 +167,6 @@ EXPIRE_AFTER = '1h'
 MAX_RETRIES = 2
 
 # templates for verification
-HTML_MESSAGE_TEMPLATE = "registration/activation_email.html"
-VERIFICATION_SUCCESS_TEMPLATE = "registration/activation_complete.html"
-VERIFICATION_FAILED_TEMPLATE = "registration/activation_failed.html"
 REQUEST_NEW_EMAIL_TEMPLATE = 'registration/resend_email_form.html'
-LINK_EXPIRED_TEMPLATE = 'registration/expired.html'
-NEW_EMAIL_SENT_TEMPLATE  = 'registration/new_email_sent.html'
 
 AUTH_USER_MODEL = 'base.User'
