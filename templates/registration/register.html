@@ -13,6 +13,8 @@
             <div class="form__group">
                 <form action="" method="POST">
                     {{ user_form.as_p }}
+                        <input type="checkbox" name="is_superuser" id="is_superuser">
+                        <label for="is_superuser"> Create Admin</label>
                     <div class="confirm">
                         <p><input type="submit" value="Create account"></p>
                     </div>
